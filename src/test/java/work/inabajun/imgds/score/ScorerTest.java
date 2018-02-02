@@ -54,7 +54,6 @@ public class ScorerTest {
     public void scoreHi() throws IOException {
         // hi score
         double score = sut.score(EXIST_IMG_1_1, EXIST_IMG_1_2);
-        System.out.println(score);
         assertThat(score).isLessThan(10.0d);
     }
 
@@ -62,7 +61,6 @@ public class ScorerTest {
     public void scoreLow() throws IOException {
         // low score
         double score = sut.score(EXIST_IMG_1_1, EXIST_IMG_2_1);
-        System.out.println(score);
         assertThat(score).isGreaterThan(30.0d);
     }
 

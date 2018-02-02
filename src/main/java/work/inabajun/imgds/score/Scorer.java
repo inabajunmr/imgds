@@ -68,7 +68,7 @@ public class Scorer{
 
     private void index(Path imagePath) throws IOException {
         IndexWriterConfig conf = new IndexWriterConfig(new WhitespaceAnalyzer());
-        try (IndexWriter iw = new IndexWriter(FSDirectory.open(Paths.get("index")), conf);) {
+        try (IndexWriter iw = new IndexWriter(FSDirectory.open(Paths.get(indexPath)), conf);) {
             GlobalDocumentBuilder globalDocumentBuilder = new GlobalDocumentBuilder(false, false);
             globalDocumentBuilder.addExtractor(CEDD.class);
             globalDocumentBuilder.addExtractor(FCTH.class);
@@ -83,7 +83,7 @@ public class Scorer{
     private double search(Path imagePath) throws IOException {
         BufferedImage img = ImageIO.read(imagePath.toFile());
 
-        IndexReader indexReader = DirectoryReader.open(FSDirectory.open(Paths.get("index")));
+        IndexReader indexReader = DirectoryReader.open(FSDirectory.open(Paths.get(indexPath)));
         ImageSearcher searcher = new GenericFastImageSearcher(1, CEDD.class);
         ImageSearchHits hits = searcher.search(img, indexReader);
 
