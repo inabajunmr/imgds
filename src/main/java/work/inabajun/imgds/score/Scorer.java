@@ -43,7 +43,7 @@ public class Scorer{
      *
      * @param image1Path image file1 path
      * @param image2Path image file2 path
-     * @return
+     * @return score
      */
     public double score(Path image1Path, Path image2Path) throws IOException {
         // not null
