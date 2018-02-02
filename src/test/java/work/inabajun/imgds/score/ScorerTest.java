@@ -5,7 +5,6 @@ import org.junit.Test;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.FileSystems;
-import java.nio.file.Files;
 import java.nio.file.Path;
 
 import static org.assertj.core.api.Assertions.*;
@@ -16,13 +15,15 @@ import static org.assertj.core.api.Assertions.*;
  */
 public class ScorerTest {
 
-    private final Scorer sut = new ScorerImpl("images");
+    private final Scorer sut = new Scorer("index");
+
+    private final String TEST_IMAGE_DIR = "src/test/resources/images";
 
     // 1_1 and 1_2 are alike. They and 2_1 are not alike.
-    private final Path NOTING_IMG_PATH = FileSystems.getDefault().getPath("images", "nothing");
-    private final Path EXIST_IMG_1_1 = FileSystems.getDefault().getPath("images", "1_1.jpg");
-    private final Path EXIST_IMG_1_2 = FileSystems.getDefault().getPath("images", "1_2.jpg");
-    private final Path EXIST_IMG_2_1= FileSystems.getDefault().getPath("images", "2_1.jpg");
+    private final Path NOTING_IMG_PATH = FileSystems.getDefault().getPath(TEST_IMAGE_DIR, "nothing");
+    private final Path EXIST_IMG_1_1 = FileSystems.getDefault().getPath(TEST_IMAGE_DIR, "1_1.jpg");
+    private final Path EXIST_IMG_1_2 = FileSystems.getDefault().getPath(TEST_IMAGE_DIR, "1_2.jpg");
+    private final Path EXIST_IMG_2_1= FileSystems.getDefault().getPath(TEST_IMAGE_DIR, "2_1.jpg");
 
     @Test(expected = IllegalArgumentException.class)
     public void nullPath1() throws IOException {
@@ -53,14 +54,16 @@ public class ScorerTest {
     public void scoreHi() throws IOException {
         // hi score
         double score = sut.score(EXIST_IMG_1_1, EXIST_IMG_1_2);
-        assertThat(score).isLessThan(30.0d);
+        System.out.println(score);
+        assertThat(score).isLessThan(10.0d);
     }
 
     @Test
     public void scoreLow() throws IOException {
         // low score
         double score = sut.score(EXIST_IMG_1_1, EXIST_IMG_2_1);
-        assertThat(score).isLessThan(10.0d);
+        System.out.println(score);
+        assertThat(score).isGreaterThan(30.0d);
     }
 
 }
