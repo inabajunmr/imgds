@@ -1,5 +1,7 @@
 package work.inabajun.imgds.score;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Path;
 
 public interface Scorer {
@@ -11,5 +13,5 @@ public interface Scorer {
      * @param image2Path image file2 path
      * @return
      */
-    public double score (Path image1Path, Path image2Path);
+    public double score (Path image1Path, Path image2Path) throws IOException;
 }
