@@ -26,7 +26,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @RequiredArgsConstructor
-public class Scorer{
+public class Scorer {
 
     private final String indexPath;
 
@@ -37,7 +37,10 @@ public class Scorer{
      * Alike=tiny score.
      * ex.<br>
      * A=A'...1.0<br>
-     * A=B...10.0
+     * A=B...10.0<br>
+     * <br>
+     * This method never remove index files.<br>
+     * These index files is never used but this function is ran only as Lambda function.
      * </p>
      *
      * @param image1Path image file1 path
