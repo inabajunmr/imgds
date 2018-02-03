@@ -1,5 +1,5 @@
 # imgds
-2 image differ scorer. Lambda function.
+2 image differ scorer.
 
 * Input:2 image file paths
 * Output: Degree of similarity
